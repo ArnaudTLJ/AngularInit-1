@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
+  title: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.title = 'Livraison';
   }
 
 }
