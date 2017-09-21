@@ -10,6 +10,7 @@ import { ListitemComponent } from './listitem/listitem.component';
 import { FormComponent } from './form/form.component';
 import { FilterPipe } from './filter.pipe';
 import { StateDirective } from './state.directive';
+import { CollectionService } from './collection.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { StateDirective } from './state.directive';
     ReactiveFormsModule,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [CollectionService],
   bootstrap: [AppComponent],
   entryComponents: [ModalComponent]
 })

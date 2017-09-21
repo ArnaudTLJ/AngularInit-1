@@ -1,9 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ModalComponent } from '../modal/modal.component';
+import { CollectionService } from '../collection.service';
 import { Item } from '../item';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-form',
@@ -12,14 +13,12 @@ import { Item } from '../item';
 })
 export class FormComponent implements OnInit {
 
-  @Output() formData: EventEmitter<Item> = new EventEmitter();
-
   form: FormGroup;
   nameCtrl: FormControl;
   referenceCtrl: FormControl;
   stateCtrl: FormControl;
 
-  constructor(fb: FormBuilder, private modalService: NgbModal) {
+  constructor(fb: FormBuilder, private modalService: NgbModal, private _CollectionService: CollectionService) {
     this.nameCtrl = fb.control('', [Validators.required, Validators.minLength(2)]);
     this.referenceCtrl = fb.control('', [Validators.required, Validators.minLength(4)]);
     this.stateCtrl = fb.control(0);
@@ -34,7 +33,7 @@ export class FormComponent implements OnInit {
 
   sendItem() {
     const item = new Item({name: this.form.value.nom, reference: this.form.value.ref, state: this.form.value.etat});
-    this.formData.emit(item);
+    this._CollectionService.addItem(item);
     this.resetForm();
     this.open();
   }
