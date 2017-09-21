@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="card" *ngFor="let item of collection">
+    <h4 class="card-header state-0" *ngIf="0 == item.state">Commande à livrer</h4>
+    <h4 class="card-header state-1" *ngIf="1 == item.state">Commande en cours de livraison</h4>
+    <h4 class="card-header state-2" *ngIf="2 == item.state">Commande livrée</h4>
+    <div class="card-body">
+      <h4 class="card-title">{{ item.name }}</h4>
+      <p class="card-text">Référence : {{ item.reference }}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</div>
