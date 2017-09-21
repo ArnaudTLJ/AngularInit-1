@@ -12,7 +12,7 @@ export class MenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.title = 'Livraison';
+    this.title = 'Livraisons';
   }
 
 }
