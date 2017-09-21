@@ -1,12 +1,21 @@
 <div class="container">
-  <div class="card" *ngFor="let item of collection">
-    <h4 class="card-header state-0" *ngIf="0 == item.state">Commande à livrer</h4>
-    <h4 class="card-header state-1" *ngIf="1 == item.state">Commande en cours de livraison</h4>
-    <h4 class="card-header state-2" *ngIf="2 == item.state">Commande livrée</h4>
+  <div class="navbar navbar-light bg-light my-form">
+    <form class="form-inline">
+      <input (keyup)="$event" #search class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card" *ngFor="let item of collection | filter:search.value">
+    <h4 [appState]="item.state"></h4>
     <div class="card-body">
       <h4 class="card-title">{{ item.name }}</h4>
       <p class="card-text">Référence : {{ item.reference }}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <div *ngIf="2 !== item.state">
+        <button (click)="changeState(item,1)" *ngIf="1 !== item.state" class="btn btn-primary">En cours</button>
+        <button (click)="changeState(item,2)" class="btn btn-primary">Livrée</button>
+      </div>
     </div>
   </div>
 </div>
