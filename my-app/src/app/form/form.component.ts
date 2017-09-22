@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { CollectionService } from '../collection.service';
@@ -13,36 +12,22 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class FormComponent implements OnInit {
 
-  form: FormGroup;
-  nameCtrl: FormControl;
-  referenceCtrl: FormControl;
-  stateCtrl: FormControl;
+  newItem: Item;
 
-  constructor(fb: FormBuilder, private modalService: NgbModal, private _CollectionService: CollectionService) {
-    this.nameCtrl = fb.control('', [Validators.required, Validators.minLength(2)]);
-    this.referenceCtrl = fb.control('', [Validators.required, Validators.minLength(4)]);
-    this.stateCtrl = fb.control(0);
-    this.form = fb.group({
-      nom: this.nameCtrl,
-      ref: this.referenceCtrl,
-      etat: this.stateCtrl
-    });
+  constructor(private modalService: NgbModal, private _CollectionService: CollectionService) {}
+
+  ngOnInit() {
+    this.resetForm();
   }
 
-  ngOnInit() {}
-
   sendItem() {
-    const item = new Item({name: this.form.value.nom, reference: this.form.value.ref, state: this.form.value.etat});
-    this._CollectionService.addItem(item);
+    this._CollectionService.addItem(this.newItem);
     this.resetForm();
     this.open();
   }
 
   resetForm() {
-    this.form.reset();
-    this.nameCtrl.setValue('');
-    this.referenceCtrl.setValue('');
-    this.stateCtrl.setValue(0);
+    this.newItem = new Item({name: '', reference: '', state: 0});
   }
 
   open() {

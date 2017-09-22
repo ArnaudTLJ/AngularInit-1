@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -28,7 +29,8 @@ import { RoutingModule } from './routing/routing.module';
     FormsModule,
     ReactiveFormsModule,
     NgbModule.forRoot(),
-    RoutingModule
+    RoutingModule,
+    HttpModule
   ],
   providers: [CollectionService],
   bootstrap: [AppComponent],

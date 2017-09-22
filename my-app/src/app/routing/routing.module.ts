@@ -9,7 +9,7 @@ const appRoutes: Routes = [
   { path: 'list', component: ListitemComponent },
   { path: 'form', component: FormComponent },
   { path: '',
-    redirectTo: '/list',
+    redirectTo: 'list',
     pathMatch: 'full'
   }
 ];
