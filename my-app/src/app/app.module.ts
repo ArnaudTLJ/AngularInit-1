@@ -11,6 +11,7 @@ import { FormComponent } from './form/form.component';
 import { FilterPipe } from './filter.pipe';
 import { StateDirective } from './state.directive';
 import { CollectionService } from './collection.service';
+import { RoutingModule } from './routing/routing.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CollectionService } from './collection.service';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    RoutingModule
   ],
   providers: [CollectionService],
   bootstrap: [AppComponent],
